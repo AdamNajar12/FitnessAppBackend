@@ -7,7 +7,7 @@ class UserSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = User
-        fields = ['email', 'nom', 'prenom', 'telephone', 'role', 'password', 'confirmPassword']
+        fields = ['email', 'nom', 'prenom', 'telephone', 'role', 'password', 'confirmPassword'] 
         extra_kwargs = {'password': {'write_only': True}}
 
     def validate(self, data):
@@ -44,7 +44,7 @@ class ClientSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Client
-        fields = ['email', 'nom', 'prenom', 'telephone', 'role', 'password', 'confirmPassword', 'age', 'poids', 'objectifs', 'taille', 'niveau']
+        fields = ['email', 'nom', 'prenom', 'telephone', 'role', 'password', 'confirmPassword', 'age', 'poids', 'objectifs', 'taille']
 
     def validate(self, data):
         if data['password'] != data['confirmPassword']:
