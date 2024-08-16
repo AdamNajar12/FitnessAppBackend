@@ -13,6 +13,7 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 from pathlib import Path
 from corsheaders.defaults import default_headers
 from datetime import timedelta
+import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -163,14 +164,25 @@ CORS_ALLOWED_ORIGINS = [
      'http://localhost:3000',
 ]
 
+# settings.py
+CORS_ALLOW_HEADERS = list(default_headers) + [
+    'withcredentials',
+]
 CORS_ALLOW_CREDENTIALS = True
 
+CORS_ALLOW_HEADERS = ['*']
 # Allow headers required for the frontend to work properly
 CORS_ALLOW_HEADERS = list(default_headers) + [
     'X-CSRFToken',
 ]
 # settings.py
 APPEND_SLASH = False
+CSRF_TRUSTED_ORIGINS = [
+    "http://localhost:3000",  # L'URL de votre frontend
+]
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 
 # Cookie settings
 SESSION_COOKIE_SAMESITE = 'None'

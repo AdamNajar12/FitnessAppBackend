@@ -47,7 +47,7 @@ def login(request):
     
     # Générer le token
     token = generate_access_token(user)
-    response.set_cookie(key='jwt', value=token, httponly=True)
+    response.set_cookie(key='jwt', value=token, httponly=True, secure=True, samesite='None')
     response.data = {
         'jwt': token
     }
@@ -77,6 +77,15 @@ class GetCurrentUserView(APIView):
             'prenom': user.prenom,
             'telephone': user.telephone,
         })
+
+@api_view(['POST'])
+def logout(_):
+    response = Response()
+    response.delete_cookie(key='jwt')
+    response.data = {
+        'message': 'Success'
+    }
+    return response
 
 
 

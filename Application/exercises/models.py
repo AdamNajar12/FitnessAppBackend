@@ -9,6 +9,7 @@ class Exercice(models.Model):
     repetitions = models.IntegerField()
     sets = models.IntegerField()
     verrouillage = models.BooleanField(default=False)
+    file = models.CharField(max_length=200)
     programme = models.ForeignKey(Programs, on_delete=models.CASCADE, related_name='exercices')
 
 class Progression(models.Model):

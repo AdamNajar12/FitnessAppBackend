@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager, PermissionsMixin
 
+
 class CustomUserManager(BaseUserManager):
     def create_user(self, email, password=None, **extra_fields):
         if not email:
@@ -23,7 +24,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     prenom = models.CharField(max_length=30)
     telephone = models.CharField(max_length=15)
     role = models.CharField(max_length=10, choices=[('coach', 'Coach'), ('client', 'Client')])
-    username = None
+    username = None 
 
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = []
@@ -54,3 +55,4 @@ class Client(User):
     objectifs = models.TextField()
     taille = models.FloatField()
     niveau = models.CharField(max_length=30)
+    programmes = models.ManyToManyField('programs.Programs', related_name='clients', blank=True)

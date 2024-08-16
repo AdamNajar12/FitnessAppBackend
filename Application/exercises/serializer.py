@@ -18,4 +18,4 @@ class ExerciceSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Exercice
-        fields = ['id', 'nom', 'type', 'duree', 'repetitions', 'sets', 'programme']
+        fields = ['id','nom', 'type', 'duree', 'repetitions', 'sets','file', 'programme']
