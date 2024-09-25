@@ -1,6 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager, PermissionsMixin
-
+from django.utils import timezone
 
 class CustomUserManager(BaseUserManager):
     def create_user(self, email, password=None, **extra_fields):
@@ -55,4 +55,7 @@ class Client(User):
     objectifs = models.TextField()
     taille = models.FloatField()
     niveau = models.CharField(max_length=30)
+    date_creation = models.DateTimeField(default=timezone.now)
     programmes = models.ManyToManyField('programs.Programs', related_name='clients', blank=True)
+    def __str__(self):
+        return f"{self.prenom} {self.nom}"

@@ -46,7 +46,8 @@ INSTALLED_APPS = [
     'corsheaders',
     'users',
     'exercises',
-    'programs'
+    'programs',
+    'Progression'
 ]
 
 MIDDLEWARE = [

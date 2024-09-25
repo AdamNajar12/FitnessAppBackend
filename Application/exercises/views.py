@@ -54,3 +54,10 @@ class FileUploadView(APIView):
         return Response({
             'url': 'http://localhost:8000/api' + url
         })
+    
+
+
+
+
+
+    
