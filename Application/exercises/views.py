@@ -10,7 +10,7 @@ from rest_framework.permissions import IsAuthenticated
 from rest_framework.parsers import MultiPartParser
 from django.core.files.storage import default_storage
 from rest_framework.response import Response
-
+from rest_framework.decorators import api_view
 
 class ProgramGenericAPIView(generics.GenericAPIView, 
                             mixins.ListModelMixin, 
@@ -54,6 +54,11 @@ class FileUploadView(APIView):
         return Response({
             'url': 'http://localhost:8000/api' + url
         })
+@api_view(['GET'])
+def get_exercices_by_program(request, program_id):
+    exercices = Exercice.objects.filter(programme_id=program_id)  # Use programme_id here
+    serializer = ExerciceSerializer(exercices, many=True)
+    return Response(serializer.data)
     
 
 

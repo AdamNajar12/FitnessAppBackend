@@ -137,7 +137,7 @@ class get_programs_by_coach(APIView):
         user = request.user
         coach = user.coach
         programs = Programs.objects.filter(coach=coach)
-        program_list = [{'nom': program.nom} for program in programs]
+        program_list = [{'nom': program.nom,'id':program.id} for program in programs]
 
         return Response({'programs': program_list})
 class get_clients_by_program(APIView):
@@ -160,5 +160,6 @@ class get_clients_by_program(APIView):
             return Response({'clients': client_list}, status=200)
         except Programs.DoesNotExist:
             return Response({'error': 'Programme non trouvé.'}, status=404)
+
  
   
